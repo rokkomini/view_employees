@@ -1,15 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import EmployeeItem from './employee-item'
+import axios from 'axios'
 
-const URI = process.env.REACT_APP_EMPLOYEES_API || 'https://reqres.in/api/users'
-
+ 
 
 function App() {
+  const URI = process.env.REACT_APP_EMPLOYEES_API || 'https://reqres.in/api/users'
+
+const [employees, setEmployees] = useState<EmployeeItem[]>([])
+const [error, setError] = useState<string | undefined>()
+
+axios.get(URI)
+  .then(response => setEmployees(response.data.data))
+  .catch(err => {
+    setEmployees([]);
+    setError('Somethin went wrong');
+  })
+  
+
   return (
     <div className="App">
       <header className="App-header">
-      Hello
+      {employees.map(employee => 
+   
+        <p key={employee.id}>{employee.email}</p>
+      
+      )}
       
       </header>
     </div>
