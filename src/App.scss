@@ -1,0 +1,23 @@
+
+.container {
+  margin: auto;
+  padding: 40;
+  h1{
+
+    text-align: center;
+  }
+}
+
+.employee-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: beige;
+  border: white solid;
+  img {
+    width: 300px;
+    border-radius: 50%;
+  }
+}
