@@ -4,16 +4,13 @@ import EmployeeItem from "./employee-item";
 import axios from "axios";
 import Pagination from "./components/Pagination";
 import EmployeeCard from "./components/EmployeeCard";
-import { arrayBuffer } from "stream/consumers";
+import Footer from "./components/Footer";
 
 function App() {
   const [employees, setEmployees] = useState<EmployeeItem[]>([]);
   const [currentPage, setCurrentPage] = useState<number | undefined>(1);
   const [totalPages, setTotalPages] = useState<number | null>();
   const [error, setError] = useState<string | undefined>();
-  const [, updateState] = useState<Object | undefined>({});
-
-  const forceUpdate = useCallback(() => updateState({}), []);
 
   const URL =
     process.env.REACT_APP_EMPLOYEES_API || "https://reqres.in/api/users";
@@ -35,7 +32,7 @@ function App() {
   return (
     <div>
       <div className="container">
-        <h1>Our People</h1>
+       <button className="header-link" onClick={(e) => setCurrentPage(1)}><h1>Our People</h1></button>
         <div className="employee-section">
           {employees &&
             employees.map((employee) => (
@@ -51,6 +48,7 @@ function App() {
       </div>
 
       <Pagination pages={totalPages} changePage={setCurrentPage}/>
+      <Footer />
     </div>
   );
 }
