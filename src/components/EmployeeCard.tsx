@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EmployeeItem from "../employee-item";
 import { VscMail } from "react-icons/vsc";
+import { IoMdHand, IoIosAt, IoIosMail } from "react-icons/io";
 
 export default function EmployeeCard({
   id,
@@ -9,8 +10,6 @@ export default function EmployeeCard({
   last_name,
   email,
 }: EmployeeItem) {
-  //  const [employees, setEmployees] = useState<EmployeeItem[]>([]);
-
   return (
     <div key={id} className="card">
       <div className="avatar">
@@ -21,8 +20,8 @@ export default function EmployeeCard({
           {first_name} {last_name}
         </h2>
         <div className="contact-info">
-          <div>
-            <VscMail />
+          <div className="svg">
+            <IoIosMail size={"30px"} color={'#ced0ce'}/>
           </div>
           <div>
             <p>

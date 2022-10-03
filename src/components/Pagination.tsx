@@ -1,4 +1,3 @@
-import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 
