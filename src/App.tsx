@@ -1,59 +1,90 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.scss";
 import EmployeeItem from "./employee-item";
 import axios from "axios";
 import Pagination from "./components/Pagination";
 import EmployeeCard from "./components/EmployeeCard";
+import { arrayBuffer } from "stream/consumers";
 
 function App() {
   const [employees, setEmployees] = useState<EmployeeItem[]>([]);
+  const [currentPage, setCurrentPage] = useState<number | undefined>(1);
+  const [totalPages, setTotalPages] = useState<number | null>();
   const [error, setError] = useState<string | undefined>();
-  const [page, setPage] = useState<number | null>(1);
+  const [, updateState] = useState<Object | undefined>({});
 
-  const URI =
+  const forceUpdate = useCallback(() => updateState({}), []);
+
+  const URL =
     process.env.REACT_APP_EMPLOYEES_API || "https://reqres.in/api/users";
 
-  function fetchEmployees() {
+  useEffect(() => {
     axios
-      .get(`${URI}?page=${page}`)
-      .then((response) => setEmployees(response.data.data))
+      .get(URL, { params: { page: currentPage } })
+      .then((response) => {
+        setEmployees(response.data.data);
+        setTotalPages(response.data.total_pages);
+      })
+
       .catch((err) => {
         setEmployees([]);
         setError("Something went wrong");
       });
-  }
-  
-  async function fetchPageOne (){
-    setPage(1)
-  await fetchEmployees()
-  }
-
-  function fetchPageTwo (){
-    setPage(2)
-   return fetchEmployees()
-  }
-
-  useEffect(() => {
-    fetchEmployees();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div>
       <div className="container">
         <h1>Our People</h1>
         <div className="employee-section">
-          {employees.map((employee) => (
-            <EmployeeCard
-              id={employee.id}
-              avatar={employee.avatar}
-              first_name={employee.first_name}
-              last_name={employee.last_name}
-              email={employee.email}
-            />
-          ))}
+          {employees &&
+            employees.map((employee) => (
+              <EmployeeCard
+                id={employee.id}
+                avatar={employee.avatar}
+                first_name={employee.first_name}
+                last_name={employee.last_name}
+                email={employee.email}
+              />
+            ))}
         </div>
       </div>
-      <Pagination fetchPageOne={fetchPageOne} fetchPageTwo={fetchPageTwo} /> 
+
+      <div className="pagination">
+        <ul className="page-list">
+          {[...Array(totalPages)].map((page, i) => (
+            <>
+              <li className="pageItem" key={i}>
+                <button
+                  key={i + 1}
+                  className="page-link"
+                  onClick={(e) => setCurrentPage(i + 1)}
+                >
+                  {i + 1}
+                </button>
+              </li>
+            </>
+          ))}
+          {/* <li className="page-item">
+            <button
+              className="page-link"
+              value={1}
+              onClick={() => handlePageChange(1)}
+            >
+              1
+            </button>
+          </li>
+          <li className="page-item">
+            <button
+              className="page-link"
+              value={2}
+              onClick={(e) => handlePageChange(2)}
+            >
+              2
+            </button>
+          </li> */}
+        </ul>
+      </div>
     </div>
   );
 }

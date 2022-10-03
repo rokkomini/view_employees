@@ -1,21 +1,20 @@
 import React, {useState} from 'react'
 
-export default function Pagination({fetchPageOne, fetchPageTwo} : any) {
+export default function Pagination({getOne, getTwo} : any) {
 
-    
   return (
     <div className='pagination'>
     <ul className="page-list">
       <li className="page-item">
-        <button className="page-link" onClick={(e) => fetchPageOne()}>
+        <button className="page-link" onClick={() => getOne}>
           1
         </button>
       </li>
-      <li className="page-item">
-        <button className="page-link" onClick={(e) => fetchPageTwo()}>
+       <li className="page-item">
+        <button className="page-link" onClick={() => getTwo}>
           2
         </button>
-      </li>
+      </li> 
     </ul>
   </div>
   )
