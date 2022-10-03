@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import EmployeeItem from "./employee-item";
 import axios from "axios";

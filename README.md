@@ -4,9 +4,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 1. Clone project
-2. In the React folder, download the node_modules and run in console:
+2. In the React folder, download the node_modules with command:
    1. `npm install`
-3. Run project locally/development mode with script, run in console:
+3. Run project locally/in development mode with script, run in console:
    1. `npm start`
    
 ## Deployment
