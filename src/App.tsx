@@ -22,8 +22,7 @@ function App() {
         setEmployees(response.data.data);
         setTotalPages(response.data.total_pages);
       })
-
-      .catch((err) => {
+      .catch((error) => {
         setEmployees([]);
         setError("Something went wrong");
       });
@@ -32,7 +31,9 @@ function App() {
   return (
     <div>
       <div className="container">
-       <button className="header-link" onClick={(e) => setCurrentPage(1)}><h1>Our People</h1></button>
+        <button className="header-link" onClick={(e) => setCurrentPage(1)}>
+          <h1>Our People</h1>
+        </button>
         <div className="employee-section">
           {employees &&
             employees.map((employee) => (
@@ -47,7 +48,7 @@ function App() {
         </div>
       </div>
 
-      <Pagination pages={totalPages} changePage={setCurrentPage}/>
+      <Pagination pages={totalPages} changePage={setCurrentPage} />
       <Footer />
     </div>
   );
