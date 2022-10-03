@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap");
+
+$primary-color: #f15025;
+$secondary-color: #ced0ce;
+$third-color: #191919;
+$fourth-color: #e6e8e6;
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
 .container {
   margin: auto;
   padding: 40;
@@ -11,11 +21,15 @@
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 30px;
+  gap: 20px;
 }
 
 .card {
-  background-color: beige;
-  border: white solid;
+  border-style: none none double double;
+  border-width: 10px;
+  border-radius: 5px;
+  border-color: $fourth-color;
+
   width: 20em;
   height: 20em;
   margin-top: 15px;
@@ -23,6 +37,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  color: $primary-color;
+ 
   h2 {
     text-align: center;
   }
@@ -31,30 +47,42 @@
     max-width: 200px;
     border-radius: 50%;
   }
+  a {
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 $primary-color;
+    color: $primary-color;
+    margin: 0 -.25rem;
+    padding: 5px .25rem;
+    transition: color .4s ease-in-out, box-shadow .3s ease-in-out;
+  }
+  a:hover {
+    box-shadow: inset 200px 0 0 0 $primary-color;
+    color: white;
+  }
 }
 
 .pagination {
- display: flex;
- justify-content: center;
- padding-bottom: 20px;
- ul{
-  margin: 0;
- }
- .page-list {
-  list-style: none;
-  border: solid;
-  display:inline-flex;
- .page-item{
-  display: inline-flex;
-  border: solid;
-  padding: 10px;
-  margin: 5px;
- }
-  a{
-    text-decoration: none;
-    color: black;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  ul {
+    margin: 0;
   }
- }
+  .page-list {
+    list-style: none;
+    border: solid;
+    display: inline-flex;
+    .page-item {
+      display: inline-flex;
+      border: solid;
+      padding: 10px;
+      margin: 5px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
 }
 
 @media only screen and (max-width: 1000px) {

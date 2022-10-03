@@ -50,41 +50,7 @@ function App() {
         </div>
       </div>
 
-      <div className="pagination">
-        <ul className="page-list">
-          {[...Array(totalPages)].map((page, i) => (
-            <>
-              <li className="pageItem" key={i}>
-                <button
-                  key={i + 1}
-                  className="page-link"
-                  onClick={(e) => setCurrentPage(i + 1)}
-                >
-                  {i + 1}
-                </button>
-              </li>
-            </>
-          ))}
-          {/* <li className="page-item">
-            <button
-              className="page-link"
-              value={1}
-              onClick={() => handlePageChange(1)}
-            >
-              1
-            </button>
-          </li>
-          <li className="page-item">
-            <button
-              className="page-link"
-              value={2}
-              onClick={(e) => handlePageChange(2)}
-            >
-              2
-            </button>
-          </li> */}
-        </ul>
-      </div>
+      <Pagination pages={totalPages} changePage={setCurrentPage}/>
     </div>
   );
 }
